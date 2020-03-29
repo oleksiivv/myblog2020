@@ -1,0 +1,154 @@
+
+<html lang="en">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<style>
+
+body{
+  word-wrap:break-word;
+  background-color: #FFFAC4;
+}
+
+.row{
+  margin-top:70px;
+}
+
+a{
+color:black;
+font-size:25px;
+}
+a:hover{
+color:black;
+font-size:28px;
+
+}
+#toTop{
+color:black;
+font-size:15px;
+
+}
+header{
+  position:fixed;
+  z-index:1;
+  opacity:0.9;
+}
+
+.ff{
+width:70%;
+height:60px;
+border-radius:10px;
+}
+textarea{
+width:90%;
+height:100px;
+border-radius:15px;
+}
+form{
+  width:100%;
+
+}
+
+#arrow{
+  width:45px;
+  color:white;
+  background-color: black;
+  border-radius: 25px;
+}
+#con{
+  width:70%;
+}
+#brand{
+  cursor:pointer;
+}
+
+#formMessage{
+  background-image:url(https://i0.wp.com/onlyvectorbackgrounds.com/wp-content/uploads/2018/09/Abstract-Ambient-Light-Background-Day-Blue.jpg?fit=1191%2C843&ssl=1);
+  background-size: cover;
+  opacity:0.9;
+  border-radius: 5px;
+}
+
+.fb{
+  border-radius: 45px;
+}
+</style>
+<meta charset="UTF-8">
+<title>{% block title %}Блог{% endblock %}</title>
+</head>
+<body>
+  <header id="header">
+
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+        <button class="navbar-toggler" type="button" onclick="showNav()" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto" id="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'articles:mainPage'%}">Головна</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'articles:index'%}">Перелік статтей</a>
+            </li>
+          </ul>
+
+        </div>
+        <span class="navbar-brand" id="brand" align="right" onclick="scrollToTop()">#MyBlog</span>
+      </nav>
+    </header>
+{% block content %}
+
+{% endblock %}
+<footer class="container">
+<center><hr width="60%"></hr>
+  <a align="right" href="https://www.facebook.com/annapetrochenko.annapetrochenko">
+    <button name="share" value="facebook" align="right" class="btn btn-primary fb">fb</button></a>
+        <p>© 2020 Vertex Studio. Всі права захищені</p>
+</center>
+</footer>
+</body>
+
+<script>
+var cnt=0;
+function showNav(){
+  cnt++;
+  if(cnt%2!=0){
+  document.getElementById("navbarCollapse").style.display="block";
+  var arr=document.getElementsByClassName("nav-link");
+  for(var i=0;i<arr.length;i++){
+    arr[i].style.fontSize="20px"
+  }
+  //document.getElementById("articlesList").style.marginTop=14+"%";
+  document.getElementById("brand").innerHTML="";
+}else{
+  document.getElementById("navbarCollapse").style.display="none";
+  //document.getElementById("articlesList").style.marginTop=1+"%";
+  document.getElementById("brand").innerHTML="#МійБлог";
+}
+}
+
+
+/*window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.getElementById("nav").style.top = "0";
+  } else {
+    document.getElementById("nav").style.top = "-150px";
+  }
+  prevScrollpos = currentScrollPos;
+}*/
+
+function scrollToTop(){
+  var scrollStep = -window.scrollY / (600.0 / 15),
+    scrollInterval = setInterval(function(){
+    if ( window.scrollY != 0 ) {
+        window.scrollBy( 0, scrollStep );
+    }
+    else clearInterval(scrollInterval);
+ },15);
+}
+</script>
+</html>

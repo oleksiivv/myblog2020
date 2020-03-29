@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}Головна{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm-1"></div>
+  <div id="articlesList" class="col-sm-6">
+    <div class="alert alert-info">
+       <h2>Вітаю у моєму блозі!</h1></br>Тут ви можете прочитати статті на різну тематику, прокоментувати їх, а також можете запропонувати тему для статті.
+       <a align="right" href="https://www.facebook.com/annapetrochenko.annapetrochenko">
+         <button name="share" value="facebook" align="right" class="btn btn-primary">фейсбук автора</button></a>
+    </div>
+  {% if last %}
+
+  <h1>Остання стаття</h1></br>
+  {% for a in last %}
+  <div class="alert alert-primary">
+      <h5>{{a.articleTitle}}</h5>
+      <p>{{a.articleText}}</p>
+      <p>{{a.publicationDate}}</p><a align="right" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}">
+        <button name="share" value="facebook" align="right" class="btn btn-primary">поділитись у facebook</button>
+
+        </a>
+      <hr></hr>
+    </div>
+  {% endfor %}
+  {% else %}
+    Статі не знайдені
+  {% endif %}
+
+</div>
+  <div height="auto" class=" col-sm-4">
+    {% if list %}
+
+    <h2>Перелік цікавих тем</h2></br>
+    <div  class="alert alert-dark">
+    {% for a in list %}
+        <h4><a href="{% url 'articles:detail' a.id %}">{{a.articleTitle}}</a></h4>
+        <p>{{a.publicationDate}}</p>
+        <hr></hr>
+        </br>
+
+    {% endfor %}
+    {% else %}
+
+    {% endif %}
+  </div>
+  </div>
+{% endblock %}

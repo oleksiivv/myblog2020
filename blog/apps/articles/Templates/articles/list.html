@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Останні статті{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-sm-1"></div>
+  {% if list %}
+  <div id="articlesList" class="col-sm-7">
+  <h1>Перелік статтей</h1></br>
+  {% for a in list %}
+  <div class="alert alert-primary">
+      <a href="{% url 'articles:detail' a.id %}">{{a.articleTitle}}</a>
+      <p>{{a.publicationDate}}</p>
+      <hr></hr>
+      </br>
+  </div>
+  {% endfor %}
+  {% else %}
+    Статтей не знайдені
+  {% endif %}
+</div>
+<div class="col-sm-3">
+  <h3>Напишіть мені</h3>
+  <div height="auto" class=" alert alert-success" >
+  <p>
+
+    <form action="{% url 'articles:sendMessage'%}" method='POST'>
+
+    {% csrf_token %}
+    <input type="text" class="ff" name="nick" required placeholder="Ваше ім'я':"></br></br>
+    <textarea name="message" required placeholder="Повідомлення:"></textarea></br></br>
+    <input type="submit" name="sendMes" value="Відправити" class="btn btn-danger"></input>
+
+    </form>
+  </p>
+  </div>
+  </div>
+  </div>
+{% endblock %}
